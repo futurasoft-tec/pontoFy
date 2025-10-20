@@ -1,0 +1,102 @@
+/* Estilos para os alertas */
+/* Estilos base (mobile first) */
+.alert-container {
+    position: fixed;
+    top: 20px;
+    right: 0;
+    z-index: 1000;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+
+.alert-container .alert {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem 20px;
+    border-radius: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin-bottom: 15px;
+    transform: translateX(120%);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    opacity: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.alert-container .alert.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.alert-container .alert-success {
+    background-color: #ebe3f5;
+    border-left: 5px solid #003e46;
+    color: #003e46;
+}
+
+.alert-container .alert-error {
+    background-color: #ebe3f5;
+    border-left: 4px solid #ef4444;
+    color: #991b1b;
+}
+
+.alert-container .alert-icon {
+    font-size: 24px;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.alert-container .alert-content {
+    flex: 1;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.alert-container .alert-close {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 15px;
+    color: inherit;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.alert-container .alert-close:hover {
+    opacity: 1;
+}
+
+/* Barra de progresso (opcional) */
+.alert-container .alert::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    animation: progress 5s linear forwards;
+}
+
+
+
+/* Para telas maiores */
+@media (min-width: 769px) {
+    .alert-container {
+        width: auto;
+        max-width: 450px;
+        right: 20px;
+        padding: 0;
+    }
+}
+
+
+@keyframes progress {
+    to {
+        width: 0;
+    }
+}

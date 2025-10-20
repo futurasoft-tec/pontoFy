@@ -1,0 +1,51 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('contratos', function (Blueprint $table) {
+            $table->id();
+            
+            // Relacionamento
+            $table->foreignId('team_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('colaborador_id')->constrained('colaboradores')->cascadeOnDelete();
+
+            // Identificação
+            $table->string('codigo', 50);
+            $table->unique(['team_id', 'codigo']); // unicidade por empresa
+
+            // Dados do contrato
+            $table->string('tipo_contrato', 100)->nullable();
+            $table->date('data_inicio');
+            $table->date('data_fim')->nullable();
+            $table->integer('periodo_experiencia')->nullable(); // dias ou meses
+            $table->decimal('salario_base', 15, 2);
+            $table->text('funcoes')->nullable();
+            $table->text('observacoes')->nullable();
+
+            // Situação do contrato
+            $table->enum('status', ['ativo','inativo','terminado'])->default('ativo');
+
+            // Auditoria
+            $table->foreignId('criado_por')->constrained('users')->cascadeOnDelete();
+
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('contratos');
+    }
+};

@@ -1,0 +1,29 @@
+#sidebar {
+    background-color: #003e46;
+}
+
+#sidebar ul li{
+    margin: 0;
+    padding: 0;
+}
+
+#sidebar .nav-item ul li a{
+    padding: 5px 10px;
+}
+
+
+#sidebar ul li a,
+#sidebar ul li a i {
+    color: #edebf0;
+    border-left: 3px solid transparent;
+    transition: .3s;
+}
+
+/* Hover no link */
+#sidebar ul li a:hover,
+#sidebar ul li a:hover i {
+    color: #00c780;
+    border-left: 3px solid #00c780;
+}
+
+

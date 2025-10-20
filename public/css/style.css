@@ -1,0 +1,346 @@
+/* DEFINICÇÃO DAS COMERS
+
+//Backgoun principal (Branco) #fff;
+//Cor primaria Menu lateral #012c31
+//Cor secundaria/destaques dos titulo e subtitulos #003e46
+//Cor escuro/dark para textos normal #212529;
+//Cor para fundo dos botoes e dages #decdf1
+//Cor para para elementos dentro dos botoes e badges #decdf1
+
+
+//======================Mapa das class======================
+////====btn=====
+.btn-active //Botao com background activo #003e46/decdf1
+.btn-opcite //Botao com background menos activo #decdf1
+.btn-border-active //Botao com border activo e bk menos activo #003e46/003e46
+
+////====btn=====
+.btn-outline-active //Botao com background branco, border activo com texto activo #fff/#003e46
+
+
+////====badge=====
+.badge-active //Badge com background activo #003e46
+.badge-opcite //Badge com background menos activo #decdf1
+.badge-border-active //Badge com border activo e bk menus activo #003e46
+
+
+
+////====btn=====
+.bg-active //Fubdo com background activo #003e46
+.bg-opcite //Fubdo com background menos activo #decdf1
+
+
+
+
+*/
+
+
+body {
+    font-family: Montserrat;
+}
+
+/* /////===========Botoes================= */
+/* btn active */
+.btn-active {
+    background-color: #003e46;
+    color: #fff;
+    transition: .3s;
+    border: 1px solid transparent;
+    padding: 0.7rem 1rem;
+    border-radius: 0.3rem;
+    font-size: .8rem;
+}
+
+.btn-active:hover {
+    background-color: #edebf0;
+    color: #003e46;
+
+    transition: .3s;
+    border: 1px solid #003e46;
+}
+
+
+/* btn border active */
+.btn-border-active {
+    background-color: #edebf0;
+    color: #003e46;
+    transition: .3s;
+    border: 1px solid #003e46;
+    padding: 0.7rem 1rem;
+    border-radius: 0.3rem;
+}
+
+.btn-border-active:hover {
+    background-color: #003e46;
+    color: #edebf0;
+
+    transition: .3s;
+}
+
+/* btn opacite */
+.btn-opacite {
+    background-color: #edebf0;
+    color: #003e46;
+    transition: .3s;
+    padding: 0.7rem 1rem;
+    border-radius: 0.3rem;
+}
+
+.btn-opacite:hover {
+    background-color: #003e46;
+    color: #edebf0;
+    transition: .3s;
+
+}
+
+/* btn-outline-active */
+.btn-outline-active {
+    background-color: #fff;
+    color: #003e46;
+    transition: .3s;
+    border: 1px solid #003e46;
+    padding: 0.7rem 1rem;
+    border-radius: 0.3rem;
+}
+
+.btn-outline-active:hover {
+    background-color: #003e46;
+    color: #edebf0;
+
+    transition: .3s;
+}
+
+
+
+/* ===========Badge=========== */
+/* active */
+.badge-active {
+    background-color: #003e46;
+    color: #edebf0;
+    padding: 0.7rem 1rem;
+    border-radius: 0.3rem;
+}
+
+/* active */
+.badge-opacite {
+    border: 1px solid #5a06ec32;
+    background-color: #edebf0;
+    color: #003e46;
+    padding: 0.7rem 1rem;
+    border-radius: 0.3rem;
+}
+
+
+/* =========background bg e text========== */
+/* active */
+.bg-active {
+    background-color: #003e46;
+}
+
+.bg-opacite {
+    background-color: #edebf0;
+}
+
+
+.bg-active-dark {
+    background-color: #012c31;
+}
+
+
+.text-active-dark {
+    color: #012c31;
+}
+
+.text-active {
+    color: #003e46;
+}
+
+.text-opacite {
+    color: #bfa0e5;
+}
+
+
+/* ======Border=== */
+.border-active-1 {
+    border: 1px solid #003e46;
+}
+
+.border-active-2 {
+    border: 2px solid #003e46;
+}
+
+.border-active-3 {
+    border: 3px solid #003e46;
+}
+
+.border-active-4 {
+    border: 4px solid #003e46;
+}
+
+
+
+.border-active-1 {
+    border: 1px solid #003e46;
+}
+
+.border-bottom-opacite-2 {
+    border-bottom: 2px solid #decdf1;
+}
+
+
+
+/* =====Links activos======= */
+.link-active {
+    color: #003e46;
+}
+
+.link-active:hover {
+    color: #5a06ecba;
+}
+
+
+
+
+/* DARK.MODE */
+/* /////===========Botoes================= */
+/* btn active */
+.darkmode .btn-active {
+    background-color: #593f90;
+    color: #d3c0fc;
+    transition: .3s;
+    border: 1px solid transparent;
+}
+
+.darkmode .btn-active:hover {
+    background-color: #2a1257;
+    color: #00c780;
+
+    transition: .3s;
+    border: 1px solid #593f90;
+}
+
+/* btn border active */
+.darkmode .btn-border-active {
+    background-color: #2a1257;
+    color: #00c780;
+    transition: .3s;
+    border: 1px solid #593f90;
+}
+
+.darkmode .btn-border-active:hover {
+    background-color: #593f90;
+    color: #d3c0fc;
+
+    transition: .3s;
+}
+
+/* btn opacite */
+.darkmode .btn-opacite {
+    background-color: #2a1257;
+    color: #00c780;
+    transition: .3s;
+}
+
+.darkmode .btn-opacite:hover {
+    background-color: #593f90;
+    color: #d3c0fc;
+    transition: .3s;
+
+}
+
+/* btn-outline-active */
+.darkmode .btn-outline-active {
+    background-color: #1a1a1a;
+    color: #00c780;
+    transition: .3s;
+    border: 1px solid #593f90;
+}
+
+.darkmode .btn-outline-active:hover {
+    background-color: #593f90;
+    color: #d3c0fc;
+
+    transition: .3s;
+}
+
+/* ===========Badge=========== */
+/* active */
+.darkmode .badge-active {
+    background-color: #593f90;
+    color: #d3c0fc;
+    padding: .5rem;
+}
+
+/* active */
+.darkmode .badge-opacite {
+    border: 1px solid #593f9050;
+    background-color: #2a1257;
+    color: #00c780;
+    padding: .5rem;
+}
+
+/* =========background bg e text========== */
+/* active */
+.darkmode .bg-active {
+    background-color: #593f90;
+}
+
+.darkmode .bg-opacite {
+    background-color: #2a1257;
+}
+
+.darkmode .bg-active-dark {
+    background-color: #140a2e;
+}
+
+.darkmode .text-active {
+    color: #00c780;
+}
+
+.darkmode .text-opacite {
+    color: #d3c0fc;
+}
+
+
+.darkmode.text-active-dark {
+    color: #00c780;
+}
+
+
+/* ======Border=== */
+.darkmode .border-active-1 {
+    border: 1px solid #593f90;
+}
+
+.darkmode .border-active-2 {
+    border: 2px solid #593f90;
+}
+
+.darkmode .border-active-3 {
+    border: 3px solid #593f90;
+}
+
+.darkmode .border-active-4 {
+    border: 4px solid #593f90;
+}
+
+.darkmode .border-bottom-opacite-2 {
+    border-bottom: 2px solid #3a2960;
+}
+
+/* =====Links activos======= */
+.darkmode .link-active {
+    color: #00c780;
+}
+
+.darkmode .link-active:hover {
+    color: #593f90;
+}
+
+form input {
+    height: 45px;
+}
+
+form input select {
+    height: 45px;
+}
