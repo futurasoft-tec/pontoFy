@@ -44,8 +44,8 @@
                             <li><a href="/colaboradores"><span class="sub-item">Listar Colaboradores</span></a></li>
                             <li><a href="/colaboradores/create"><span class="sub-item">Adicionar Colaborador</span></a>
                             </li>
-                            <li><a href="/categorias"><span class="sub-item">Categorias Profissionais</span></a></li>
-                            <li><a href="{{ route('cargos.index') }}"><span class="sub-item">Níveis Hierárquico</span></a></li>
+                            <li><a href="{{ route('categorias.index') }}"><span class="sub-item">Categorias Profissionais</span></a></li>
+                            <li><a href="{{ route('niveis.index') }}"><span class="sub-item">Níveis Hierárquico</span></a></li>
                             <li><a href="{{ route('cargos.index') }}"><span class="sub-item">Cargos e Funções</span></a></li>
                             <li><a href="/documentos-colaboradores"><span class="sub-item">Documentos</span></a></li>
                         </ul>

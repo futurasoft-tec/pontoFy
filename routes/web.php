@@ -12,6 +12,10 @@ use App\Http\Controllers\{
     DepartamentoController,
     // Cargos
     CargoController,
+    // Niveis de Hierqrquia
+    NiveisHierarquicoController,
+    // Categorias Profissionais
+    CategoriaController,
 };
 
 
@@ -76,6 +80,31 @@ Route::middleware(['auth'])
         Route::get('cargo/{id}/edit', [CargoController:: class,'edit'])->name('cargo.edit');
         Route::put('cargo/{id}/update', [CargoController:: class,'update'])->name('cargo.update');
         Route::delete('cargo/{id}/delete', [CargoController:: class,'destroy'])->name('cargo.destroy');
+    });
+
+
+    // ======================NIVEIS======================
+    Route::middleware(['auth', 'can:company_gestaoColaboradores'])->group(function(){
+        Route::get('nivel/list', [NiveisHierarquicoController:: class, 'index'])->name('niveis.index');
+        Route::get('nivel/create', [NiveisHierarquicoController::class, 'create'])->name('nivel.create');
+        Route::post('nivel/store', [NiveisHierarquicoController:: class, 'store'])->name('nivel.store');
+        Route::get('nivel/{id}/details', [NiveisHierarquicoController:: class,'show'])->name('nivel.show');
+        Route::get('nivel/{id}/edit', [NiveisHierarquicoController:: class,'edit'])->name('nivel.edit');
+        Route::put('nivel/{id}/update', [NiveisHierarquicoController:: class,'update'])->name('nivel.update');
+        Route::delete('nivel/{id}/delete', [NiveisHierarquicoController:: class,'destroy'])->name('nivel.destroy');
+    });
+
+
+
+     // ======================CATEGORIAS PROFISSIONAIS======================
+    Route::middleware(['auth', 'can:company_gestaoColaboradores'])->group(function(){
+        Route::get('categorias/list', [CategoriaController:: class, 'index'])->name('categorias.index');
+        Route::get('categoria/create', [CategoriaController::class, 'create'])->name('categoria.create');
+        Route::post('categoria/store', [CategoriaController:: class, 'store'])->name('categoria.store');
+        Route::get('categoria/{id}/details', [CategoriaController:: class,'show'])->name('categoria.show');
+        Route::get('categoria/{id}/edit', [CategoriaController:: class,'edit'])->name('categoria.edit');
+        Route::put('categoria/{id}/update', [CategoriaController:: class,'update'])->name('categoria.update');
+        Route::delete('categoria/{id}/delete', [CategoriaController:: class,'destroy'])->name('categoria.destroy');
     });
 
 });

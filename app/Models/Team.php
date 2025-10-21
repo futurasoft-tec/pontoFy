@@ -33,6 +33,18 @@ class Team extends JetstreamTeam
 
 
 
+     # Pegar todos departamentos do team
+    public function cargos(){
+        return $this->hasMany(Cargo:: class, 'team_id');
+    }
+
+
+     # Pegar todos departamentos do team
+    public function niveis(){
+        return $this->hasMany(NiveisHierarquico:: class, 'team_id');
+    }
+
+
 
 
     /**
