@@ -12,12 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('rubricas', function (Blueprint $table) {
-            $table->id();
-
+           $table->id();
             // Relacionamento com empresa
             $table->foreignId('team_id')->constrained('teams')->cascadeOnDelete();
 
-            $table->string('codigo', 50)->unique();
+            $table->string('codigo', 50);
             $table->string('nome', 150);
             $table->text('descricao')->nullable();
             $table->enum('tipo', ['vencimento', 'desconto']);
@@ -25,9 +24,11 @@ return new class extends Migration
             $table->decimal('valor', 15, 2)->nullable();
             $table->text('formula')->nullable();
             $table->boolean('is_tributavel')->default(true);
-
+            $table->string('slug_sistema', 50)->nullable()->index();
             $table->timestamps();
-            
+
+            // Chave única por team_id + codigo
+            $table->unique(['team_id', 'codigo']);
         });
     }
 

@@ -6,16 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     {{-- Título dinâmico --}}
-    <title>@yield('title', 'PONTO-RH - Gestão de Recursos Humanos')</title>
+    <title>@yield('title', 'PONTO-Fy - Gestão de Recursos Humanos')</title>
 
     {{-- Responsividade --}}
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
 
     {{-- SEO Básico --}}
     <meta name="description"
-        content="PONTO-RH é um sistema completo de gestão de recursos humanos, desenvolvido pela Futurasoft - Tecnologia, Lda. Automatize folha de salários, assiduidade e processos de RH de forma simples e eficiente." />
+        content="PONTO-Fy é um sistema completo de gestão de recursos humanos, desenvolvido pela Futurasoft - Tecnologia, Lda. Automatize folha de salários, assiduidade e processos de Fy de forma simples e eficiente." />
     <meta name="keywords"
-        content="PONTO-RH, gestão de recursos humanos, folha de salários, RH Angola, Futurasoft, software de RH" />
+        content="PONTO-Fy, gestão de recursos humanos, folha de salários, Fy Angola, Futurasoft, software de Fy" />
     <meta name="author" content="Futurasoft - Tecnologia, Lda" />
 
     {{-- URL do site --}}
@@ -25,18 +25,18 @@
     <link rel="icon" href="{{ asset('assets/img/kaiadmin/favicon.ico') }}" type="image/x-icon" />
 
     {{-- Open Graph (Facebook, LinkedIn, WhatsApp, etc.) --}}
-    <meta property="og:title" content="PONTO-RH - Gestão de Recursos Humanos" />
+    <meta property="og:title" content="PONTO-Fy - Gestão de Recursos Humanos" />
     <meta property="og:description"
         content="Solução completa para folha de salários e gestão de recursos humanos em Angola." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://pontorh.ao" />
     <meta property="og:image" content="{{ asset('assets/img/kaiadmin/og-image.png') }}" />
-    <meta property="og:site_name" content="PONTO-RH" />
+    <meta property="og:site_name" content="PONTO-Fy" />
 
     {{-- Twitter Cards --}}
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="PONTO-RH - Gestão de Recursos Humanos" />
-    <meta name="twitter:description" content="Automatize folha de salários e gestão de RH com o PONTO-RH." />
+    <meta name="twitter:title" content="PONTO-Fy - Gestão de Recursos Humanos" />
+    <meta name="twitter:description" content="Automatize folha de salários e gestão de Fy com o PONTO-Fy." />
     <meta name="twitter:image" content="{{ asset('assets/img/kaiadmin/og-image.png') }}" />
     <meta name="twitter:site" content="@pontorh" />
 
@@ -60,6 +60,7 @@
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/sidebar-company.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/alerta.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/preloader.css') }}">
 
     <script src="{{ asset('') }}"></script>
 
@@ -90,7 +91,19 @@
 
 <body>
     <div class="wrapper">
-
+        <!-- Preloader -->
+        {{-- <div class="preloader" id="preloader">
+            <div class="loader-container">
+                <div class="loader-logo">PontoFy</div>
+                <div class="loader">
+                    <div class="loader-circle"></div>
+                    <div class="loader-circle"></div>
+                </div>
+                <div class="loader-progress">
+                    <div class="loader-progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+        </div> --}}
 
         @include('components.sidebar-company')
 
@@ -101,7 +114,7 @@
             @include('components.company-header')
             {{-- END HEADER --}}
             @yield('content')
-            
+
             {{-- SIDBAR --}}
             {{-- FOOTER --}}
             @include('components.company-footer')
@@ -145,6 +158,7 @@
     <script src="{{ asset('assets/js/setting-demo.js') }}"></script>
     <script src="{{ asset('assets/js/demo.js') }}"></script>
     <script src="{{ asset('js/alertas.js') }}"></script>
+    <script src="{{ asset('js/preloader.js') }}"></script>
     <script src="{{ asset('assets/js/grafico-salarial-semestral.js') }}"></script>
 
 

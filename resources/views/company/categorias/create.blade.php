@@ -57,7 +57,7 @@
                             <div class="col-md-4 mb-3">
                                 <label for="departamento_id" class="form-label fw-semibold">Departamento <span
                                         class="text-danger">*</span></label>
-                                <select name="departamento_id" id="departamento_id" class="form-select form-select-lg rounded-1" required>
+                                <select name="departamento_id" id="departamento_id" class="form-select rounded-1" required>
                                     <option value="" class="small">-- Selecionar --</option>
                                     @foreach ($departamentos as $departamento)
                                         <option value="{{ $departamento->id }}" class="small">{{ $departamento->nome }}</option>
@@ -69,7 +69,7 @@
                             <div class="col-md-4 mb-3">
                                 <label for="cargo_id" class="form-label fw-semibold">Cargo <span
                                         class="text-danger">*</span></label>
-                                <select name="cargo_id" id="cargo_id" class="form-select form-select-lg rounded-1" required>
+                                <select name="cargo_id" id="cargo_id" class="form-select rounded-1" required>
                                     <option value="" class="small">-- Selecionar --</option>
                                     @foreach ($cargos as $cargo)
                                         <option value="{{ $cargo->id }}" class="small">{{ $cargo->nome }}</option>
@@ -80,7 +80,7 @@
                             <!-- Estado -->
                             <div class="col-md-4 mb-3">
                                 <label for="estado" class="form-label fw-semibold">Estado</label>
-                                <select name="estado" id="estado" class="form-select form-select-lg rounded-1">
+                                <select name="estado" id="estado" class="form-select rounded-1">
                                     <option value="ativo" selected class="small">Ativo</option>
                                     <option value="inativo" class="small">Inativo</option>
                                 </select>

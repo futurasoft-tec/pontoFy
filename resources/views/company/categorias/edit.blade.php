@@ -49,7 +49,6 @@
                     <form action="{{ route('categoria.update', $categoria->id) }}" method="POST">
                         @csrf
                         @method('PUT')
-
                         {{-- Identificação --}}
                         <input type="hidden" name="team_id" value="{{ Auth::user()->currentTeam->id }}">
                         <input type="hidden" name="criado_por" value="{{ Auth::user()->id }}">
@@ -60,7 +59,7 @@
                                 <label for="departamento_id" class="form-label fw-semibold">Departamento <span
                                         class="text-danger">*</span></label>
                                 <select name="departamento_id" id="departamento_id"
-                                    class="form-select form-select-lg rounded-1" required>
+                                    class="form-select rounded-1" required>
                                     <option value="" class="small">-- Selecionar --</option>
                                     @foreach ($departamentos as $departamento)
                                         <option value="{{ $departamento->id }}" class="small"
@@ -75,7 +74,7 @@
                             <div class="col-md-4 mb-3">
                                 <label for="cargo_id" class="form-label fw-semibold">Cargo <span
                                         class="text-danger">*</span></label>
-                                <select name="cargo_id" id="cargo_id" class="form-select form-select-lg rounded-1"
+                                <select name="cargo_id" id="cargo_id" class="form-select rounded-1"
                                     required>
                                     <option value="" class="small">-- Selecionar --</option>
                                     @foreach ($cargos as $cargo)
@@ -90,7 +89,7 @@
                             <!-- Estado -->
                             <div class="col-md-4 mb-3">
                                 <label for="estado" class="form-label fw-semibold">Estado</label>
-                                <select name="estado" id="estado" class="form-select form-select-lg rounded-1">
+                                <select name="estado" id="estado" class="form-select rounded-1">
                                     <option value="ativo" class="small"
                                         {{ old('estado', $categoria->estado) == 'ativo' ? 'selected' : '' }}>Ativo</option>
                                     <option value="inativo" class="small"

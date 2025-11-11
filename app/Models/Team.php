@@ -45,6 +45,31 @@ class Team extends JetstreamTeam
     }
 
 
+     # Pegar todos colaboradores do team
+    public function colaboradores(){
+        return $this->hasMany(Colaborador:: class, 'team_id');
+    }
+
+
+    # Pegar todos periodos de processamentos
+    public function periodos(){
+        return $this->hasMany(Colaborador:: class, 'team_id');
+    }
+
+    # Pegar todas folhas de salarios
+    public function folhasSalarios(){
+        return $this->hasMany(FolhasSalario:: class, 'team_id');
+    }
+
+    // Usuario dono do team 
+    public function user(){
+        return $this->belongsTO(User:: class, 'user_id');
+    }
+
+
+
+
+
 
 
     /**

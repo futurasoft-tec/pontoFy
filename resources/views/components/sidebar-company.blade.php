@@ -41,13 +41,12 @@
                     </a>
                     <div class="collapse" id="colaboradores">
                         <ul class="nav nav-collapse">
-                            <li><a href="/colaboradores"><span class="sub-item">Listar Colaboradores</span></a></li>
-                            <li><a href="/colaboradores/create"><span class="sub-item">Adicionar Colaborador</span></a>
+                            <li><a href="{{ route('colaboradores.index') }}"><span class="sub-item">Listar Colaboradores</span></a></li>
+                            <li><a href="{{ route('colaborador.create') }}"><span class="sub-item">Adicionar Colaborador</span></a>
                             </li>
                             <li><a href="{{ route('categorias.index') }}"><span class="sub-item">Categorias Profissionais</span></a></li>
                             <li><a href="{{ route('niveis.index') }}"><span class="sub-item">Níveis Hierárquico</span></a></li>
                             <li><a href="{{ route('cargos.index') }}"><span class="sub-item">Cargos e Funções</span></a></li>
-                            <li><a href="/documentos-colaboradores"><span class="sub-item">Documentos</span></a></li>
                         </ul>
                     </div>
                 </li>
@@ -78,7 +77,7 @@
                     <div class="collapse" id="salarios">
                         <ul class="nav nav-collapse">
                             <li><a href="/salarios/processar"><span class="sub-item">Processar Folha</span></a></li>
-                            <li><a href="/salarios"><span class="sub-item">Listar Folhas</span></a></li>
+                            <li><a href="{{ route('salarios.index') }}"><span class="sub-item">Listar Folhas</span></a></li>
                             <li><a href="/adiantamentos"><span class="sub-item">Adiantamentos</span></a></li>
                             <li><a href="/abonos-descontos"><span class="sub-item">Descontos e Abonos</span></a></li>
                         </ul>
@@ -94,7 +93,7 @@
                     </a>
                     <div class="collapse" id="contratos">
                         <ul class="nav nav-collapse">
-                            <li><a href="/contratos"><span class="sub-item">Listar Contratos</span></a></li>
+                            <li><a href="{{ route('contratos.index') }}"><span class="sub-item">Lista de Contratos</span></a></li>
                             <li><a href="/contratos/create"><span class="sub-item">Novo Contrato</span></a></li>
                             <li><a href="/contratos/tipos"><span class="sub-item">Tipos de Contrato</span></a></li>
                             <li><a href="/contratos/gestao"><span class="sub-item">Renovação/Rescisão</span></a></li>
@@ -220,7 +219,7 @@
 
             <!-- Texto -->
             <div class="logo text-start flex-grow-1">
-                <a href="#" class="text-light m-0 config-link">
+                <a href="{{ route('configuracoes.index') }}" class="text-light m-0 config-link">
                     Configurações
                 </a>
             </div>

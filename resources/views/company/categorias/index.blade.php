@@ -52,7 +52,7 @@
                             </div>
                             <div class="text-center">
                                 <a href="{{ route('categoria.create') }}" class="btn btn-active rounded-pill">
-                                    <i class="ri-user-add-line me-2"></i>Criar Novo Departamento
+                                    <i class="ri-user-add-line me-2"></i>Criar Nova Categoria Profissional
                                 </a>
                             </div>
                         </div>

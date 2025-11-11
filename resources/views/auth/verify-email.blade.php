@@ -1,9 +1,10 @@
-<x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
+@extends('layouts.auth-layout')
+@section('title', 'Conformar Senha - PontoFy - Gestão de Recursos Humanos')
+@section('content')
 
+    {{-- ComponenteHeaderAuth --}}
+    @include('auth.auth-components')
+    <div class="auth-body">
         <div class="mb-4 text-sm text-gray-600">
             {{ __('Before continuing, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
         </div>
@@ -14,32 +15,31 @@
             </div>
         @endif
 
-        <div class="mt-4 flex items-center justify-between">
-            <form method="POST" action="{{ route('verification.send') }}">
+        <!-- Formulário de Login -->
+        <form action="{{ route('verification.send') }}" method="POST" id="auth-form">
+            @csrf
+            <button type="submit" class="btn-auth border-0" id="submit-form">
+                <span id="submit-text">
+                    Reenviar o e-mail de verificação
+                </span>
+                <div class="spinner-border spinner-border-sm d-none" id="submit-spinner" role="status">
+                    <span class="visually-hidden">Carregando...</span>
+                </div>
+            </button>
+        </form>
+
+
+        {{-- Terminar a sessao iniciada --}}
+        <div class="mb-3 mt-3 text-center">
+            <form method="POST" action="{{ route('logout') }}" class="inline">
                 @csrf
 
-                <div>
-                    <x-button type="submit">
-                        {{ __('Resend Verification Email') }}
-                    </x-button>
-                </div>
+                <button type="submit"
+                    class="underline border btn text-sm text-danger hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ms-2">
+                    Terminar Sessão
+                </button>
             </form>
-
-            <div>
-                <a
-                    href="{{ route('profile.show') }}"
-                    class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                    {{ __('Edit Profile') }}</a>
-
-                <form method="POST" action="{{ route('logout') }}" class="inline">
-                    @csrf
-
-                    <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ms-2">
-                        {{ __('Log Out') }}
-                    </button>
-                </form>
-            </div>
         </div>
-    </x-authentication-card>
-</x-guest-layout>
+    </div>
+@endsection
+

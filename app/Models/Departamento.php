@@ -34,6 +34,12 @@ class Departamento extends Model
         return $this->belongsTo(User::class);
     }
 
+    // Pegar usuario que criou o departamento
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class, 'categoria_id');
+    }
+
 
     // Pegar todos colaboradores do departamento
     public function colaboradores(){

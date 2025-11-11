@@ -28,7 +28,30 @@ class DependenteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('erro', 'É necessário estar autenticado.');
+        }
+
+        $user = auth()->user();
+        $team = $user->currentTeam;
+
+        if (!$team) {
+            return redirect()->route('dashboard')->with('erro', 'Nenhum time selecionado.');
+        }
+
+
+        // validar dados
+        $validaDados = $request->validate([
+            'colaborador_id'        => 'required|exists:colaboradores,id',
+            'nome'                  => 'required|string|max:255',
+            'sexo'                  => 'required|string|max:50',
+            'parentesco'            => 'required|string|max:50',
+            'data_nascimento'      => 'required|date',
+        ]);
+
+        // Salvar dados
+        $dependentes = Dependente::create($validaDados);
+        return redirect()->back()->with('sucesso', 'Dependente Adicionando com Sucesso');
     }
 
     /**
@@ -50,16 +73,60 @@ class DependenteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Dependente $dependente)
+    public function update(Request $request,  $id)
     {
-        //
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('erro', 'É necessário estar autenticado.');
+        }
+
+        $user = auth()->user();
+        $team = $user->currentTeam;
+
+        if (!$team) {
+            return redirect()->route('dashboard')->with('erro', 'Nenhum time selecionado.');
+        }
+
+
+        // validar dados
+        $validaDados = $request->validate([
+            'colaborador_id'        => 'required|exists:colaboradores,id',
+            'nome'                  => 'required|string|max:255',
+            'sexo'                  => 'required|string|max:50',
+            'parentesco'            => 'required|string|max:50',
+            'data_nascimento'      => 'required|date',
+        ]);
+
+        // Pegar Dependente pelo ID
+        $dependente = Dependente::findOrFail($id);
+
+        // Atualizar registro
+        $dependente->update($validaDados);
+        
+        
+        return redirect()->back()->with('sucesso', 'Dependente Actualizado com sucesso');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Dependente $dependente)
+    public function destroy($id)
     {
-        //
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('erro', 'É necessário estar autenticado.');
+        }
+
+        $user = auth()->user();
+        $team = $user->currentTeam;
+
+        if (!$team) {
+            return redirect()->route('dashboard')->with('erro', 'Nenhum time selecionado.');
+        }
+
+        // Pegar Dependente pelo ID
+        $dependente = Dependente::findOrFail($id);
+
+        $dependente->delete();
+
+        return redirect()->back()->with('sucesso', 'Dependente foi excluido com sucesso');
     }
 }

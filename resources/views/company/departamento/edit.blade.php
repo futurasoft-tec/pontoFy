@@ -70,7 +70,7 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="status" class="mb-2">Estado:</label>
-                                    <select name="status" id="status" class="form-select form-select-lg rounded-1">
+                                    <select name="status" id="status" class="form-select rounded-1">
                                         <option value="ativo" {{ $departamento->status === 'ativo' ? 'selected' : '' }}>
                                             Ativo</option>
                                         <option value="inativo"

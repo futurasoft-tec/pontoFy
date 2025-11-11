@@ -166,6 +166,11 @@ class DepartamentoController extends Controller
         // Pegar o departamento pelo ID
         $departamento = Departamento::findOrFail($id);
 
+        // Verificar se o cargo pertence ao team autenticado
+        if ($departamento->team_id !== $team->id) {
+            return redirect()->route('dashboard')->with('erro', 'Departamento não encontrado.');
+        } 
+        
         $departamento -> update($validaDados);
         return redirect()->back()->with('sucesso', 'Departamento editado com sucesso');
     }
@@ -176,7 +181,7 @@ class DepartamentoController extends Controller
     public function destroy($id)
     {
         
-         // VERIFICAR SE USUARIO ESTA AUTENTICADO
+        // VERIFICAR SE USUARIO ESTA AUTENTICADO
         if(auth()->check()){
             $user = auth()->user(); // Pegar usuario autenticado
 

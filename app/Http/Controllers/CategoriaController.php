@@ -155,7 +155,7 @@ class CategoriaController extends Controller
         }
 
         // Pegar categoria pelo ID
-        $categoria = Categoria::with('colaboradores')->findOrFail($id);        // Verificar se categoria pertence ao team autenticado
+        $categoria = Categoria::findOrFail($id);        // Verificar se categoria pertence ao team autenticado
         
         if($categoria->team_id !== $team->id){
             return redirect()-route('dashboard')->with('erro', 'Categoria não encontrada.');

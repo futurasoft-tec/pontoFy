@@ -22,7 +22,7 @@
                 </div>
                 <div class="ms-md-autoA py-2A py-md-0A mt-0">
                     <a href="{{ route('cargo.create') }}" class="btn-active btn-round"
-                    data-bs-toggle="modal" data-bs-target="#createNivelModal">
+                    data-bs-toggle="modal" data-bs-target="#createNivelHierarquicoModal">
                         <i class="fas fa-plus-square"></i>
                         <span class="d-none d-sm-inline-block ms-2">Novo</span>
                     </a>
@@ -53,11 +53,11 @@
                                 <div class="mb-4 ">
                                     <i class="fas fa-exclamation" style="font-size: 80px;"></i>
                                 </div>
-                                <h5 class="fw-normal mb-3">Nenhum Cargo/Função Criado</h5>
+                                <h5 class="fw-normal mb-3">Nenhum Nível Hierárquico Criado</h5>
                             </div>
                             <div class="text-center">
                                 <a href="#" class="btn btn-active rounded-pill"
-                                data-bs-toggle="modal" data-bs-target="#createNivelModal">
+                                data-bs-toggle="modal" data-bs-target="#createNivelHierarquicoModal">
                                     <i class="ri-user-add-line me-2"></i>Criar Novo Nível </a>
                             </div>
                         </div>

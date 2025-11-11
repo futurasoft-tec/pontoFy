@@ -23,11 +23,18 @@ return new class extends Migration
             $table->unique(['team_id', 'codigo']); // unicidade por empresa
 
             // Dados do contrato
-            $table->string('tipo_contrato', 100)->nullable();
+            $table->enum('tipo_contrato', 
+            ['trabalho_indeterminado', 'trabalho_determinado', 'trabalho_estagio','trabalho_parcial',
+            'trabalho_teletrabalho','trabalho_domicilio','trabalho_experiencia', 'trabalho_substituicao',
+            'trabalho_sazonal', 'trabalho_formacao', 'servico_prestacao', 'servico_consultoria', 'servico_representacao',
+            'servico_mandato', 'servico_empreitada']
+            )->default('trabalho_indeterminado');
             $table->date('data_inicio');
             $table->date('data_fim')->nullable();
             $table->integer('periodo_experiencia')->nullable(); // dias ou meses
             $table->decimal('salario_base', 15, 2);
+
+            // Conteúdo descritivo
             $table->text('funcoes')->nullable();
             $table->text('observacoes')->nullable();
 

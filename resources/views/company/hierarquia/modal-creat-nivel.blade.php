@@ -1,11 +1,11 @@
 <!-- Modal de Criação de Nível Hierárquico -->
-<div class="modal fade" id="createNivelModal" tabindex="-1" aria-labelledby="createNivelModalLabel" aria-hidden="true">
+<div class="modal fade" id="createNivelHierarquicoModal" tabindex="-1" aria-labelledby="createNivelHierarquicoModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content border-0 shadow-lg rounded-3">
 
             <!-- Cabeçalho -->
             <div class="modal-header bg-active text-white">
-                <h5 class="modal-title" id="createNivelModalLabel">
+                <h5 class="modal-title" id="createNivelHierarquicoModalLabel">
                     <i class="bi bi-plus-circle me-2"></i> Adicionar Novo Nível Hierárquico
                 </h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"

@@ -207,6 +207,8 @@ class CargoController extends Controller
 
         $cargo = Cargo::findOrFail($id);
 
+
+        // Verificar se o cargo pertence ao team autenticado
         if ($cargo->team_id !== $team->id) {
             return redirect()->route('dashboard')->with('erro', 'Cargo não encontrado.');
         }

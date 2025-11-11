@@ -20,7 +20,8 @@ return new class extends Migration
                 ->cascadeOnDelete();
 
             // Dados pessoais do dependente
-            $table->string('nome', 150);
+            $table->string('nome', 255);
+            $table->string('sexo', 50);
             $table->string('parentesco', 50)->nullable();
             $table->date('data_nascimento')->nullable();
             $table->timestamps();

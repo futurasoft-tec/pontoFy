@@ -1,0 +1,92 @@
+/* Reset e configurações básicas */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* Preloader */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f8f5f5ce;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-container {
+    text-align: center;
+}
+
+.loader {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    margin: 0 auto 20px;
+}
+
+.loader-circle {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 4px solid transparent;
+    border-top-color: #00c780;
+    animation: spin 1.5s linear infinite;
+}
+
+.loader-circle:nth-child(2) {
+    border-top-color: #003e46;
+    animation: spin 2s linear infinite reverse;
+}
+
+.loader-logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #003e46;
+    margin-bottom: 10px;
+}
+
+.loader-text {
+    color: #000000;
+    font-size: 16px;
+}
+
+.loader-progress {
+    width: 200px;
+    height: 4px;
+    background-color: #f0f0f0;
+    border-radius: 2px;
+    margin: 20px auto 0;
+    overflow: hidden;
+}
+
+.loader-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #003e46, #00c780);
+    transition: width 0.3s ease;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

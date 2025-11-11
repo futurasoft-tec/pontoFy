@@ -336,11 +336,9 @@ body {
 .darkmode .link-active:hover {
     color: #593f90;
 }
-
-form input {
-    height: 45px;
+/* =======CAMPOS DE FORMULARIOS======== */
+form input, select{
+    height: 40px;
+    font-size: 12px;
 }
 
-form input select {
-    height: 45px;
-}

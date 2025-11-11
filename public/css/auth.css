@@ -1,0 +1,357 @@
+:root {
+    --primary-dark: #003e46;
+    --primary: #00c780;
+    --transparent: #0000;
+    --white: #fff;
+}
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    /* background-color: rebeccapurple; */
+}
+
+.auth-container {
+    background-color: var(--white);
+    border-radius: 12px;
+    /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); */
+    overflow: hidden;
+    max-width: 450px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+.auth-header {
+    background-color: #003e46;
+    color: var(--white);
+    padding: 10px 30px;
+    text-align: center;
+}
+
+.auth-body {
+    padding: 20px 25px;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.tagline {
+    font-size: 16px;
+    opacity: 0.9;
+    margin-bottom: 0;
+}
+
+.form-title {
+    /* font-weight: 600; */
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: var(--primary-dark);
+    text-align: center;
+}
+
+.form-control {
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid #e1e5e9;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.2rem rgba(0, 199, 128, 0.25);
+}
+
+.btn-auth {
+    background-color: var(--primary-dark);
+    border-color: var(--primary);
+    padding: 12px;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.btn-auth:hover {
+    background-color: var(--primary);
+    border-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 25px;
+}
+
+.feature-list li {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.feature-list i {
+    color: var(--primary);
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.form-floating {
+    margin-bottom: 20px;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #6c757d;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.password-container {
+    position: relative;
+}
+
+.options-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+}
+
+.remember-me input {
+    margin-right: 8px;
+}
+
+.forgot-password {
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+    color: var(--primary-dark);
+}
+
+.divider {
+    text-align: center;
+    margin: 25px 0;
+    position: relative;
+}
+
+.divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #e9ecef;
+    z-index: 1;
+}
+
+.divider-text {
+    background-color: var(--white);
+    padding: 0 15px;
+    color: #6c757d;
+    font-size: 14px;
+    position: relative;
+    z-index: 2;
+}
+
+.social-auth {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.social-btn {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #e1e5e9;
+    border-radius: 8px;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    color: #495057;
+    text-decoration: none;
+}
+
+.social-btn:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.social-btn i {
+    font-size: 18px;
+}
+
+.google-btn i {
+    color: #DB4437;
+}
+
+.microsoft-btn i {
+    color: #00A4EF;
+}
+
+.demo-account {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 10px 15px;
+    margin-top: 12px;
+    text-align: center;
+}
+
+.demo-account p {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.demo-btn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.demo-btn:hover {
+    background-color: var(--primary);
+}
+
+
+
+
+
+
+
+/* ===============Estilizacao especifica pagina de Register=============== */
+
+       
+        .password-strength {
+            height: 5px;
+            border-radius: 5px;
+            margin-top: 5px;
+            background-color: #e9ecef;
+            overflow: hidden;
+        }
+        
+        .password-strength-bar {
+            height: 100%;
+            width: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .password-weak {
+            background-color: #dc3545;
+        }
+        
+        .password-medium {
+            background-color: #ffc107;
+        }
+        
+        .password-strong {
+            background-color: #28a745;
+        }
+        
+        .password-very-strong {
+            background-color: var(--primary);
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 25px;
+        }
+        
+        .feature-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #6c757d;
+        }
+        
+        .feature-list i {
+            color: var(--primary);
+            margin-right: 10px;
+            font-size: 16px;
+        }
+        
+        .login-link {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 14px;
+        }
+        
+        .form-floating {
+            margin-bottom: 20px;
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #6c757d;
+            cursor: pointer;
+        }
+        
+        .password-container {
+            position: relative;
+        }
+        
+        .progress-indicator {
+            height: 4px;
+            background-color: #e9ecef;
+            border-radius: 2px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background-color: var(--primary);
+            width: 25%;
+            transition: width 0.3s ease;
+        }
+        
+        .field-counter {
+            text-align: right;
+            font-size: 12px;
+            color: #6c757d;
+            margin-top: 5px;
+        }

@@ -14,28 +14,34 @@ return new class extends Migration
         Schema::create('colaboradores', function (Blueprint $table) {
             $table->id();
             // Relacionamentos
-            $table->foreignId('team_id')->constrained()->cascadeOnDelete(); // empresa
+            $table->string('codigo', 10)->unique()->notNullable();
+            $table->foreignId('team_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignId('departamento_id')->nullable()->constrained('departamentos')->nullOnDelete();
             $table->foreignId('cargo_id')->nullable()->constrained('cargos')->nullOnDelete();
 
             // Dados pessoais
             $table->string('nome_completo', 255);
-            $table->date('data_nascimento')->nullable();
-            $table->enum('genero', ['M','F','Outro'])->nullable();
-            $table->string('estado_civil', 50)->nullable();
-            $table->string('nacionalidade', 100)->nullable();
+            $table->date('data_nascimento');
+            $table->enum('genero', ['M','F','Outro']);
+            $table->string('estado_civil', 50);
+            $table->string('nacionalidade', 100);
 
             // Documentos
+            $table->string('tipo_documento', 50)->required();
+            $table->string('numero_doc_id', 50)->required();
+            $table->date('data_emissao_doc')->nullable();
+            $table->date('data_validade_doc')->nullable();
             $table->string('nif', 50)->nullable();
-            $table->string('numero_bi', 50)->nullable();
-            $table->date('data_emissao_bi')->nullable();
-            $table->date('data_validade_bi')->nullable();
+            $table->string('numero_inss', 50)->nullable();
 
             // Contactos
-            $table->text('endereco')->nullable();
-            $table->string('telefone', 50)->nullable();
-            $table->string('email', 150)->nullable();
+            $table->text('pais', 100);
+            $table->text('provincia')->nullable();
+            $table->text('cidade_estrangeira', 255)->nullable();
+            $table->text('endereco', 255)->nullable();
+            $table->string('telefone', 20)->nullable();
+            $table->string('email', 100)->nullable();
             $table->string('foto_url', 255)->nullable();
 
             // Situação laboral
@@ -45,6 +51,11 @@ return new class extends Migration
 
             // Auditoria
             $table->foreignId('criado_por')->constrained('users')->cascadeOnDelete();
+
+            // Campos do tipo unique por team
+            $table->unique(['team_id', 'numero_doc_id']);
+            $table->unique(['team_id', 'nif']);
+            $table->unique(['team_id', 'numero_inss']);
             $table->timestamps();
         });
     }
