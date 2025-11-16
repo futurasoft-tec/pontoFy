@@ -124,9 +124,10 @@
                                     <tr>
                                         <th class="py-1"> <b>Código</b> </th>
                                         <th class="py-1"><b>Colaborador</b></th>
+                                        <th class="py-1 text-end"><b>Status</b></th>
                                         <th class="py-1 text-end"><b>Data de Início</b></th>
-                                        <th class="py-1 text-end"><b>Data de Fim</b></th>
-                                        <th class="py-1 text-end"><b>Salário Base</b></th>
+                                        <th class="py-1 text-center"><b>Data de Fim</b></th>
+                                        <th class="py-1 text-center"><b>Salário Base</b></th>
                                         <th class="py-1 text-end" style="width: 100px;"><b>Acções</b></th>
                                     </tr>
                                 </thead>
@@ -138,15 +139,16 @@
                                                 {{ $contrato->codigo }}
                                             </td>
                                             <td class="py-1 small">
-                                                
                                                 <a href="{{ route('colaborador.show', $contrato->id) }}">
                                                     {{ $contrato->colaborador->nome_completo }}
                                                 </a>
                                             </td>
                                             <td class="py-1 small text-center">
+                                                {{ $contrato->status }}
+                                            </td>
+                                            <td class="py-1 small text-center">
                                                 {{ $contrato->data_inicio->format('d/m/Y') }}
                                             </td>
-
                                             <td class="py-1 small text-center">
                                                 {{ $contrato->data_fim->format('d/m/Y') }}
                                             </td>
@@ -154,22 +156,28 @@
                                                 {{ number_format($contrato->salario_base, 2, ',', '.') }}
                                             </td>
                                             <td class="py-1 small text-end">
-
-                                                <a href="{{ route('departamento.edit', $contrato->id) }}"
-                                                    class="text-active me-2" data-bs-toggle="modal"
-                                                    data-bs-target="#editContratoModal{{ $contrato->id }}">
-                                                    <i class="far fa-edit"></i>
-                                                </a>
-
-                                                <a href="{{ route('contrato.show', $contrato->id) }}"
-                                                    class="text-active ms-2">
-                                                    <i class="far fa-eye"></i>
-                                                </a>
-
-                                                <a href="{{ route('contrato.show', $contrato->id) }}"
-                                                    class="text-active ms-2">
-                                                    <i class="fas fa-print"></i>
-                                                </a>
+                                                @if ($contrato->status === 'rascunho')
+                                                    <a href="{{ route('contrato.edit', $contrato->id) }}"
+                                                        class="text-primary me-2" data-bs-toggle="modal"
+                                                        data-bs-target="#editContratoModal{{ $contrato->id }}">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    {{-- Vizualizar Rascunho --}}
+                                                    <a href="{{ route('contrato.rascunho', $contrato->id) }}"
+                                                        class="text-active me-2">
+                                                        <i class="fas fa-pencil-alt"></i>
+                                                    </a>
+                                                    {{-- Adicionar clausulas ao contrato --}}
+                                                    <a href="{{ route('add.clausulas', $contrato->id) }}"
+                                                        class="text-active me-2">
+                                                        <i class="fas fa-clipboard-check"></i>
+                                                    </a>
+                                                @else
+                                                    <a href="{{ route('contrato.show', $contrato->id) }}"
+                                                        class="text-active me-2">
+                                                        <i class="fas fa-clipboard-check"></i>
+                                                    </a>
+                                                @endif
                                             </td>
                                         </tr>
                                         @include('company.colaboradores.contratos.edit-contato')

@@ -5,10 +5,10 @@
 @section('content')
     <main class="container-fluid py-1 px-lg-5">
         <section class="page-inner">
-
             {{-- === CONTEÚDO DO CONTRATO === --}}
-            <div class="card shadow-sm border-0 pt-5" style="margin-top: 1rem;">
+            <div class="card shadow-sm border-0 pt-3 rounded-0" style="margin-top: 4.5rem;">
                 <div class="card-body p-4 pt-2  bg-white">
+                    @include('company.erros.valida_erros')
                     {{-- Cabeçalho do Contrato --}}
                     @php
                         use App\Models\Contrato;
@@ -17,8 +17,24 @@
 
 
                     <div class="mb-3 text-center">
+                        @if ($contrato->status === 'rascunho')
+                            <div class="card shadow mb-3">
+                                <div
+                                    class="card-header d-flex justify-content-between align-items-center bg-warning text-light rounded-0">
+                                    <!-- Título à esquerda -->
+                                    <h4 class="mb-0">RASCUNHO</h4>
+
+                                    <!-- CTA Voltar à direita -->
+                                    <a href="{{ route('colaborador.show', $contrato->colaborador->id) }}"
+                                        class="btn btn-light btn-sm">
+                                        <i class="fas fa-reply"></i> Voltar
+                                    </a>
+                                </div>
+                            </div>
+                        @endif
+
                         <!-- Título do Contrato -->
-                        <h3 class="fw-bold text-uppercase text-active mb-0">
+                        <h3 class="h4 fw-bold text-uppercase text-active mb-0">
                             <strong>
                                 {{ \App\Models\Contrato::TIPOS_CONTRATO[$contrato->tipo_contrato] ?? $contrato->tipo_contrato }}
                             </strong>
@@ -71,7 +87,7 @@
                     </div>
 
                     {{-- === CLÁUSULAS === --}}
-                    <div class="mt-5 contrato-doc">
+                    <div class="mt-5">
                         @if ($clausulas->isEmpty())
                             <div class="text-center py-5 border">
                                 <i class="bi bi-exclamation-circle text-muted display-5 mb-3"></i>
@@ -99,64 +115,79 @@
                                     </div>
 
 
+                                    <div class="contrato-doc">
+                                        @foreach ($clausulas as $cc)
+                                            <div
+                                                class="border-start border-end border-2 border-active p-3 mb-3 bg-light rounded-0">
+                                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                                    <div>
 
-                                    @foreach ($clausulas as $cc)
-                                        <div
-                                            class="border-start border-end border-2 border-active p-3 mb-3 bg-light rounded-0">
-                                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                                <div>
-
-                                                    <label for="{{ $cc->id }}">CLÁUSULA {{ $loop->iteration }}ª –
-                                                        ({{ $cc->titulo_base }})
-                                                    </label>
+                                                        <label for="{{ $cc->id }}">CLÁUSULA {{ $loop->iteration }}ª
+                                                            –
+                                                            ({{ $cc->titulo_base }})
+                                                        </label>
+                                                    </div>
+                                                    <input type="checkbox" name="clausulas[]" id="{{ $cc->id }}"
+                                                        value="{{ $cc->id }}"
+                                                        class="form-check-input clausula-checkbox me-2">
                                                 </div>
-                                                <input type="checkbox" name="clausulas[]" id="{{ $cc->id }}"
-                                                    value="{{ $cc->id }}"
-                                                    class="form-check-input clausula-checkbox me-2">
+
+                                                <p class="text-justify mb-0" style="line-height: 1.3;">
+                                                    {{ $cc->pivot->conteudo_personalizado ?? $cc->conteudo }}
+                                                </p>
                                             </div>
-
-                                            <p class="text-justify mb-0" style="line-height: 1.3;">
-                                                {{ $cc->pivot->conteudo_personalizado ?? $cc->conteudo }}
-                                            </p>
-                                        </div>
-                                    @endforeach
+                                        @endforeach
+                                    </div>
                                 </form>
-                            </div>
-
-                            {{-- Assinaturas --}}
-                            <div class="mt-5 pt-4">
-                                <div class="row text-center">
-                                    <div class="col-6">
-                                        <div class="border-top pt-3">
-                                            <p class="fw-600 text-dark mb-1">_______________________</p>
-                                            <p class="text-muted small">{{ $partes['empregador'] }}</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="border-top pt-3">
-                                            <p class="fw-600 text-dark mb-1">_______________________</p>
-                                            <p class="text-muted small">{{ $partes['trabalhador'] }}</p>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         @endif
                     </div>
+
+
                     {{-- === RODAPÉ === --}}
                     <div class="card py-2 border card-footer rounded-0 card-body text-center">
-                        <div class="text-center">
-                           <a href="{{ route('contratos.pdf', $contrato->id) }}" type="submit" class="btn-active rounded-2">
-                                    <i class="bi bi-pencil-square me-2"></i> Finalizar e Assinar Contrato
-                                </a>
-                        </div>
+                        <div class="d-flex justify-content-center flex-wrap">
 
+                            {{-- Visualizar PDF --}}
+                            <div class="text-center m-2">
+                                <a type="button" href="{{ route('contratos.pdf', $contrato->id) }}" class="btn-outline-active rounded-2">
+                                    <i class="fas fa-file-pdf me-2"></i>
+                                    VISUALIZAR PDF
+                                </a>
+                            </div>
+
+                            {{-- Assinar Contrato --}}
+                            <div class="m-2">
+                                <button type="button" class="btn btn-active" data-bs-toggle="modal"
+                                    data-bs-target="#assinarContratoModal{{ $contrato->id }}">
+                                    <i class="fas fa-signature me-2"></i>
+                                    ASSINAR CONTRATO
+                                </button>
+                                @include('company.contratos.manager.confirm-assinar')
+                            </div>
+
+                            {{-- Cancelar Contrato --}}
+                            <div class="m-2">
+                                <button type="button" class="btn bg-warning btn-active" data-bs-toggle="modal"
+                                    data-bs-target="#cancelarContratoModal{{ $contrato->id }}">
+                                    <i class="fas fa-ban me-2"></i>
+                                    CANCELAR
+                                </button>
+                                @include('company.contratos.manager.confirm-cancelar')
+                            </div>
+
+                            {{-- Deletar Contrato --}}
+                            <div class="m-2">
+                                <button type="button" class="btn bg-danger btn-active" data-bs-toggle="modal"
+                                    data-bs-target="#deleteContratoModal{{ $contrato->id }}">
+                                    <i class="fas fa-trash-alt me-2"></i>
+                                    DELETAR
+                                </button>
+                                @include('company.contratos.manager.confirm-delete')
+                            </div>
+
+                        </div>
                     </div>
-                    {{-- <div class="text-center mt-5 pt-4 border-top">
-                        <p class="small text-muted mb-1">Documento gerado automaticamente pelo sistema
-                            <strong>PontoFy</strong>.
-                        </p>
-                        <p class="small text-muted mb-0">© {{ date('Y') }} PontoFy - Gestão de Recursos Humanos</p>
-                    </div> --}}
 
                 </div>
             </div>

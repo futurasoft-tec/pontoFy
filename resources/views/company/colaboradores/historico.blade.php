@@ -1,5 +1,5 @@
 @extends('layouts.company-main')
-@section('title', 'Detalhe ' . $colaborador->nome_completo . ' - ' . 'PontoFy - Gestão de Recursos Humanos')
+@section('title', 'Historico - ' . $colaborador->nome_completo . ' - ' . 'PontoFy - Gestão de Recursos Humanos')
 @section('content')
 
     <main class="container" style="min-height: 100vh;">
@@ -55,42 +55,42 @@
                         <div class="card-body pt-0">
                             <ul class="nav nav-tabs nav-line nav-color-secondary" id="line-tab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="line-dados-tab" data-bs-toggle="pill" href="#line-dados"
+                                    <a class="nav-link active pt-0 pb-0 me-3" id="line-dados-tab" data-bs-toggle="pill" href="#line-dados"
                                         role="tab" aria-controls="pills-dados" aria-selected="true">Dados</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" id="line-categ-profissionais-tab" data-bs-toggle="pill"
+                                    <a class="nav-link pt-0 pb-0 me-3" id="line-categ-profissionais-tab" data-bs-toggle="pill"
                                         href="#line-categ-profissionais" role="tab"
                                         aria-controls="pills-categ-profissionais" aria-selected="false">Categoria</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" id="line-documentos-tab" data-bs-toggle="pill"
+                                    <a class="nav-link pt-0 pb-0 me-3" id="line-documentos-tab" data-bs-toggle="pill"
                                         href="#line-documentos" role="tab" aria-controls="pills-documentos"
                                         aria-selected="false">Documentos</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" id="line-contratos-tab" data-bs-toggle="pill"
+                                    <a class="nav-link pt-0 pb-0 me-3" id="line-contratos-tab" data-bs-toggle="pill"
                                         href="#line-contratos" role="tab" aria-controls="pills-contratos"
                                         aria-selected="false">Contratos</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" id="line-dependentes-tab" data-bs-toggle="pill"
+                                    <a class="nav-link pt-0 pb-0 me-3" id="line-dependentes-tab" data-bs-toggle="pill"
                                         href="#line-dependentes" role="tab" aria-controls="pills-dependentes"
                                         aria-selected="false">Depedentes</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" id="line-financeiro-tab" data-bs-toggle="pill"
+                                    <a class="nav-link pt-0 pb-0 me-3" id="line-financeiro-tab" data-bs-toggle="pill"
                                         href="#line-financeiro" role="tab" aria-controls="pills-financeiro"
                                         aria-selected="false">Financeiro</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" id="line-assiduidade-tab" data-bs-toggle="pill"
+                                    <a class="nav-link pt-0 pb-0 me-3" id="line-assiduidade-tab" data-bs-toggle="pill"
                                         href="#line-assiduidade" role="tab" aria-controls="pills-assiduidade"
                                         aria-selected="false">Assiduidade</a>
                                 </li>
@@ -142,11 +142,7 @@
                                 <!--Financeiro-->
                                 <div class="tab-pane fade" id="line-financeiro" role="tabpanel"
                                     aria-labelledby="line-financeiro-tab">
-                                    <div class="card mt-0 rounded-0">
-                                        <div class="card-body">
-                                            @include('company.colaboradores.gestao.financeiro')
-                                        </div>
-                                    </div>
+                                    @include('company.colaboradores.financeiro.index')
                                 </div>
 
                                 <!--Assiduidade-->

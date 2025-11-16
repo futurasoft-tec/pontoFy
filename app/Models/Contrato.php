@@ -20,6 +20,12 @@ class Contrato extends Model
         'funcoes',
         'observacoes',
         'status',
+        'codigo_assinatura',
+        'assinado_por',
+        'data_assinatura',
+        'data_rescisao',
+        'motivo_rescisao',
+        'rescindido_por',
         'criado_por',
     ];
 
@@ -107,27 +113,32 @@ class Contrato extends Model
     /**
      * Booted: Geração automática do código sequencial (com padding de 10 dígitos)
      */
-    protected static function booted()
+   protected static function booted()
     {
         static::creating(function ($contrato) {
-            DB::transaction(function () use ($contrato) {
-                $ano = date('Y');
 
-                $teamName = $contrato->team->name ?? 'TEAM';
-                $teamPrefix = strtoupper(Str::substr(Str::slug($teamName, ''), 0, 3));
+            $ano = date('y'); // ano em 2 dígitos (25)
+            $maxAttempts = 10;
 
-                $ultimo = Contrato::where('team_id', $contrato->team_id)
-                    ->whereYear('created_at', $ano)
-                    ->lockForUpdate()
-                    ->max(DB::raw("CAST(SUBSTRING_INDEX(codigo, '/', -1) AS UNSIGNED)"));
+            for ($i = 0; $i < $maxAttempts; $i++) {
 
-                $proximo = ($ultimo ?? 0) + 1;
+                // Ex: C-25-AS9D8KQ1
+                $codigo = 'C-' . $ano . '-' . strtoupper(Str::random(8));
 
-                $contrato->codigo = sprintf('CTR /%s/%s/%03d', $teamPrefix, $ano, $proximo);
-            });
+                $existe = DB::table('contratos')
+                    ->where('codigo', $codigo)
+                    ->exists();
+
+                if (! $existe) {
+                    $contrato->codigo = $codigo;
+                    return;
+                }
+            }
+
+            // fallback ultra-seguro caso tudo falhe (improvável)
+            $contrato->codigo = 'C-' . $ano . '-' . strtoupper(bin2hex(random_bytes(4)));
         });
     }
-
 
 
     // ===================================
@@ -156,6 +167,11 @@ class Contrato extends Model
     public function criador()
     {
         return $this->belongsTo(User::class, 'criado_por');
+    }
+
+    public function recisor()
+    {
+        return $this->belongsTo(User::class, 'rescindido_por');
     }
 
     /**

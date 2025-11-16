@@ -43,73 +43,23 @@
                                     {{ old('tipo_contrato', $contrato->tipo_contrato ?? '') == '' ? 'selected' : '' }}>
                                     Selecione o tipo de contrato
                                 </option>
-
                                 <!-- Contratos de Trabalho -->
                                 <optgroup label="Contratos de Trabalho (Lei Geral do Trabalho)">
-                                    <option value="Contrato de Trabalho por Tempo Indeterminado"
-                                        {{ old('tipo_contrato', $contrato->tipo_contrato) == 'Contrato de Trabalho por Tempo Indeterminado' ? 'selected' : '' }}>
-                                        Contrato de Trabalho por Tempo Indeterminado
-                                    </option>
-                                    <option value="Contrato de Trabalho por Tempo Determinado"
-                                        {{ old('tipo_contrato', $contrato->tipo_contrato) == 'Contrato de Trabalho por Tempo Determinado' ? 'selected' : '' }}>
-                                        Contrato de Trabalho por Tempo Determinado
-                                    </option>
-                                    <option value="Contrato de Trabalho de Estágio"
-                                        {{ old('tipo_contrato', $contrato->tipo_contrato) == 'Contrato de Trabalho de Estágio' ? 'selected' : '' }}>
-                                        Contrato de Trabalho de Estágio
-                                    </option>
-                                    <option value="Contrato de Trabalho a Tempo Parcial"
-                                        {{ old('tipo_contrato', $contrato->tipo_contrato) == 'Contrato de Trabalho a Tempo Parcial' ? 'selected' : '' }}>
-                                        Contrato de Trabalho a Tempo Parcial
-                                    </option>
-                                    <option value="Contrato de Trabalho de Teletrabalho"
-                                        {{ old('tipo_contrato', $contrato->tipo_contrato) == 'Contrato de Trabalho de Teletrabalho' ? 'selected' : '' }}>
-                                        Contrato de Trabalho de Teletrabalho
-                                    </option>
-                                    <option value="Contrato de Trabalho a Domicílio"
-                                        {{ old('tipo_contrato', $contrato->tipo_contrato) == 'Contrato de Trabalho a Domicílio' ? 'selected' : '' }}>
-                                        Contrato de Trabalho a Domicílio
-                                    </option>
-                                    <option value="Contrato de Trabalho de Experiência"
-                                        {{ old('tipo_contrato', $contrato->tipo_contrato) == 'Contrato de Trabalho de Experiência' ? 'selected' : '' }}>
-                                        Contrato de Trabalho de Experiência
-                                    </option>
-                                    <option value="Contrato de Trabalho de Substituição"
-                                        {{ old('tipo_contrato', $contrato->tipo_contrato) == 'Contrato de Trabalho de Substituição' ? 'selected' : '' }}>
-                                        Contrato de Trabalho de Substituição
-                                    </option>
-                                    <option value="Contrato de Trabalho Sazonal"
-                                        {{ old('tipo_contrato', $contrato->tipo_contrato) == 'Contrato de Trabalho Sazonal' ? 'selected' : '' }}>
-                                        Contrato de Trabalho Sazonal
-                                    </option>
-                                    <option value="Contrato de Trabalho de Formação Profissional"
-                                        {{ old('tipo_contrato', $contrato->tipo_contrato) == 'Contrato de Trabalho de Formação Profissional' ? 'selected' : '' }}>
-                                        Contrato de Trabalho de Formação Profissional
-                                    </option>
+                                    @foreach (['trabalho_indeterminado', 'trabalho_determinado', 'trabalho_estagio', 'trabalho_parcial', 'trabalho_teletrabalho', 'trabalho_domicilio', 'trabalho_experiencia', 'trabalho_substituicao', 'trabalho_sazonal', 'trabalho_formacao'] as $tipo)
+                                        <option value="{{ $tipo }}"
+                                            {{ old('tipo_contrato', $contrato->tipo_contrato ?? '') == $tipo ? 'selected' : '' }}>
+                                            {{ \App\Models\Contrato::TIPOS_CONTRATO[$tipo] }}
+                                        </option>
+                                    @endforeach
                                 </optgroup>
 
-                                <!-- Contratos de Prestação de Serviços -->
                                 <optgroup label="Contratos de Prestação de Serviços (Código Civil)">
-                                    <option value="Contrato de Prestação de Serviços"
-                                        {{ old('tipo_contrato', $contrato->tipo_contrato) == 'Contrato de Prestação de Serviços' ? 'selected' : '' }}>
-                                        Contrato de Prestação de Serviços
-                                    </option>
-                                    <option value="Contrato de Consultoria"
-                                        {{ old('tipo_contrato', $contrato->tipo_contrato) == 'Contrato de Consultoria' ? 'selected' : '' }}>
-                                        Contrato de Consultoria
-                                    </option>
-                                    <option value="Contrato de Representação Comercial"
-                                        {{ old('tipo_contrato', $contrato->tipo_contrato) == 'Contrato de Representação Comercial' ? 'selected' : '' }}>
-                                        Contrato de Representação Comercial
-                                    </option>
-                                    <option value="Contrato de Mandato"
-                                        {{ old('tipo_contrato', $contrato->tipo_contrato) == 'Contrato de Mandato' ? 'selected' : '' }}>
-                                        Contrato de Mandato
-                                    </option>
-                                    <option value="Contrato de Empreitada"
-                                        {{ old('tipo_contrato', $contrato->tipo_contrato) == 'Contrato de Empreitada' ? 'selected' : '' }}>
-                                        Contrato de Empreitada
-                                    </option>
+                                    @foreach (['servico_prestacao', 'servico_consultoria', 'servico_representacao', 'servico_mandato', 'servico_empreitada'] as $tipo)
+                                        <option value="{{ $tipo }}"
+                                            {{ old('tipo_contrato', $contrato->tipo_contrato ?? '') == $tipo ? 'selected' : '' }}>
+                                            {{ \App\Models\Contrato::TIPOS_CONTRATO[$tipo] }}
+                                        </option>
+                                    @endforeach
                                 </optgroup>
                             </select>
                         </div>

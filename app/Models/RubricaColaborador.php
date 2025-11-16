@@ -14,7 +14,8 @@ class RubricaColaborador extends Model
         'rubrica_id',
         'eh_automatica',
         'valor_customizado', 
-        'formula_customizada'
+        'formula_customizada',
+        'status',
     ];
 
 
@@ -32,6 +33,7 @@ class RubricaColaborador extends Model
     }
 
 
+    
     
     
 

@@ -31,8 +31,7 @@
                         <!-- Tipo de Contrato -->
                         <div class="col-md-4 mb-3">
                             <label for="tipo_contrato" class="form-label fw-semibold">Tipo de Contrato</label>
-                            <select name="tipo_contrato" id="tipo_contrato" class="form-select rounded-1"
-                                style="height: 45px;" required>
+                            <select name="tipo_contrato" id="tipo_contrato" class="form-select rounded-1" required>
                                 <option value="" disabled
                                     {{ old('tipo_contrato', $contrato->tipo_contrato ?? '') == '' ? 'selected' : '' }}>
                                     Selecione o tipo de contrato
@@ -100,8 +99,7 @@
                             <label for="periodo_experiencia" class="form-label fw-semibold">
                                 Período de Experiência
                             </label>
-                            <select name="periodo_experiencia" id="periodo_experiencia" class="form-select rounded-1"
-                                style="height: 45px;">
+                            <select name="periodo_experiencia" id="periodo_experiencia" class="form-select rounded-1">
                                 <option value="">Selecionar...</option>
 
                                 <!-- Contrato por Tempo Determinado -->
@@ -139,7 +137,8 @@
                             <label for="funcao" class="form-label fw-semibold">Função: <span
                                     class="text-danger">*</span></label>
                             <input type="text" name="funcao" id="funcao" class="form-control" minlength="3"
-                                required min="0" placeholder="00.000" value="{{ $colaborador->cargo->nome }}">
+                                required min="0" value="{{ $colaborador->cargo->nome }}"
+                                readonly>
                         </div>
 
                         {{-- Observacoes --}}

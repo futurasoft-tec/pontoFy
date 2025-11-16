@@ -22,6 +22,7 @@
                     <i class="bx bxs-error-circle"></i>
                 </div>
                 <div class="alert-content">
+                    <strong>ERRO: </strong>
                     <span>{{ session('erro') }}</span>
                 </div>
                 <button class="alert-close" onclick="this.parentElement.style.opacity='0'">

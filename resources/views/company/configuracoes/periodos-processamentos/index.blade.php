@@ -78,7 +78,8 @@
                                     @forelse ($periodos as $periodo)
                                         <tr>
                                             {{-- Mês --}}
-                                            <td class="py-2 fw-semibold text-dark">
+                                            <td class="py-2 fw-semibold text-dark"
+                                            style="text-transform:capitalize;">
                                                 {{ \Carbon\Carbon::create()->month($periodo->mes)->translatedFormat('F') }}
                                             </td>
 

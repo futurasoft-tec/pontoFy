@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
 
         // Registros do system
         $this->call([
-            // UserDemoSeeder::class,
+            //  UserDemoSeeder::class,
             // RolePermissionSeeder::class,
             // ClausulaTableSeeder::class,
         ]);

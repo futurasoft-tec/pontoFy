@@ -51,7 +51,6 @@
                 </h5>
                 <form action="" method="GET">
                     @csrf 
-
                     <div class="row">
                         <div class="col-md-3">
                             <label for="nome" class="small" style="font-size: 10px;">Buscar por Nome</label>

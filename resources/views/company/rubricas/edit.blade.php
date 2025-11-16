@@ -7,7 +7,7 @@
             <!-- Cabeçalho -->
             <div class="modal-header bg-active text-white">
                 <h5 class="modal-title" id="editRubricadoModalModalLabel{{ $rubrica->id }}">
-                    <i class="bi bi-pencil-square me-2"></i> Editar Período de Processamento
+                    <i class="bi bi-pencil-square me-2"></i> Editar Rubrica {{ $rubrica->nome }}
                 </h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                     aria-label="Fechar"></button>

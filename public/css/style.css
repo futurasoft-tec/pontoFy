@@ -46,17 +46,16 @@ body {
     color: #fff;
     transition: .3s;
     border: 1px solid transparent;
-    padding: 0.7rem 1rem;
+    padding: 0.9rem 1rem;
     border-radius: 0.3rem;
     font-size: .8rem;
 }
 
-.btn-active:hover {
+.btn-active:hover{
     background-color: #edebf0;
     color: #003e46;
-
     transition: .3s;
-    border: 1px solid #003e46;
+    /* border: 1px solid #003e46; */
 }
 
 
@@ -73,7 +72,6 @@ body {
 .btn-border-active:hover {
     background-color: #003e46;
     color: #edebf0;
-
     transition: .3s;
 }
 
@@ -106,7 +104,6 @@ body {
 .btn-outline-active:hover {
     background-color: #003e46;
     color: #edebf0;
-
     transition: .3s;
 }
 

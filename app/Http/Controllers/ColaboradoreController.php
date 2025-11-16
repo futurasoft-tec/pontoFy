@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Colaboradore;
 use App\Models\Categoria;
 use App\Models\Documento;
+use App\Models\Rubrica;
 use App\Models\RubricaColaborador;
 use App\Models\Contrato;
 use App\Models\Dependente;
@@ -191,7 +192,12 @@ class ColaboradoreController extends Controller
             return redirect()->route('dashboard')->with('erro', 'Cargo não encontrado.');
         }
 
-        return view('company.colaboradores.detail', compact('colaborador', 'dependentes', 'documentos', 'contratos'));
+
+        // Listar todas rubricas do team autenticado
+        $rubricas = Rubrica::where('team_id', $team->id)
+            ->get();
+
+        return view('company.colaboradores.historico', compact('colaborador', 'dependentes', 'documentos', 'contratos', 'rubricas'));
 
     }
 

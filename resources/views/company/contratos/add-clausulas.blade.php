@@ -69,7 +69,7 @@
         </div>
         <div class="ms-md-autoA py-2A py-md-0A mt-0">
             <a href="{{ route('colaborador.show', $contrato->colaborador->id) }}" class="btn-active btn-round">
-                <i class="fas fa-plus-square"></i>
+                <i class="fas fa-reply"></i>
                 <span class="d-none d-sm-inline-block ms-2">Voltar</span>
             </a>
         </div>
@@ -88,13 +88,13 @@
             
             <section class="card-body">
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-12">
                         @include('company.contratos.add-clausula-form')
                     </div>
 
-                    <div class="col-md-7">
+                    {{-- <div class="col-md-7">
                         @include('company.contratos.clausula-preview')
-                    </div>
+                    </div> --}}
                 </div>
             </section>
         </section>

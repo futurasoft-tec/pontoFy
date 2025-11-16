@@ -314,8 +314,18 @@
             {{ $contrato->team->provincia }},
             {{ $contrato->team->endereco }}
         </p>
+        @if ($contrato->codigo_assinatura)
+            <p>
+                Documento assinado electronicamente em
+                <strong>
+                    {{ \Carbon\Carbon::parse($contrato->data_assinatura)->format('d/m/Y') }}
+                </strong>
+                com código <strong>{{ $contrato->codigo_assinatura ?? 'NA' }}</strong>
+            </p>
+        @endif
         <span>
             Gerado automaticamente via {{ config('app.name') }}
+            • {{ $contrato->codigo ?? '_' }}
         </span>
         <div style="text-align: right;">
             • Página
@@ -331,10 +341,39 @@
         @endphp
 
         <div class="document-header">
+            @if ($contrato->status !== 'ativo')
+                <div
+                    style="
+        border: 2px solid red;
+        padding: 10px 15px;
+        margin: 20px 0;
+        text-align: center;
+        color: red;
+        font-size: 18px;
+        font-weight: bold;
+        text-transform: uppercase;
+    ">
+                    este encontra-se{{ $contrato->status }}
+                    <br>
+                    @if ($contrato->status === 'rescindido')
+                        <span style="font-size: 11; font-weight: normal; text-transform: none; text-align:justify;">
+                            Data da Rescisão:
+                            {{ \Carbon\Carbon::parse($contrato->data_rescisao)->format('d/m/Y') }}
+                            <br>
+                            Motivo: {{ $contrato->motivo_rescisao }}
+                        </span>
+                    @endif
+                </div>
+            @endif
             <h1 class="document-title">
                 {{ \App\Models\Contrato::TIPOS_CONTRATO[$contrato->tipo_contrato] ?? $contrato->tipo_contrato }}
             </h1>
-            <p class="document-code">{{ $contrato->codigo }}</p>
+            <p class="document-code">
+                <strong>
+                    {{ $contrato->codigo }} •
+                    {{ $contrato->codigo_assinatura ?? 'NA' }}
+                </strong>
+            </p>
         </div>
 
         <!-- Identificação das Partes -->
@@ -347,7 +386,7 @@
                     <p class="text-justify">
                         <strong class="text-uppercase">{{ $contrato->colaborador->team->name }}</strong>,
                         com sede em
-                         <span>
+                        <span>
                             @if ($contrato->team->provincia)
                                 {{ $contrato->team->provincia }},
                             @else
@@ -359,10 +398,12 @@
                             {{ $contrato->team->bairro }},
                             Rua/Zona
                             {{ $contrato->team->endereco }},
-                        </span> titular do NIF: <strong>{{ $contrato->team->nif ?? '000000000' }}</strong> , neste acto representada
+                        </span> titular do NIF: <strong>{{ $contrato->team->nif ?? '000000000' }}</strong> , neste acto
+                        representada
                         pelo (a) (s) Senhor (a) (s)
                         <strong style="text-transform: uppercase;">{{ $contrato->team->user->name }}</strong>,
-                        na qualidade de Representantes Legais, adiante designada por “<strong>{{ $partes['empregador'] }}</strong>”.
+                        na qualidade de Representantes Legais, adiante designada por
+                        “<strong>{{ $partes['empregador'] }}</strong>”.
                     </p>
                 </div>
 
@@ -387,7 +428,8 @@
             <div class="highlight">
                 <p class="text-justify mb-0">
                     É celebrado o presente
-                    <strong style="text-transform: uppercase;">{{ strtolower(\App\Models\Contrato::TIPOS_CONTRATO[$contrato->tipo_contrato]) }}</strong>,
+                    <strong
+                        style="text-transform: uppercase;">{{ strtolower(\App\Models\Contrato::TIPOS_CONTRATO[$contrato->tipo_contrato]) }}</strong>,
                     que se rege supletivamente pelas disposições da
                     @if (str_starts_with($contrato->tipo_contrato, 'trabalho_'))
                         <strong>Lei Geral do Trabalho</strong>,

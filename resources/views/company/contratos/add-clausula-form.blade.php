@@ -129,9 +129,13 @@
                         </div>
                     </div>
                     <div class="p-3 bg-light border-top text-center">
-                        <button type="submit" class="btn btn-active  rounded-2">
-                            <i class="bi bi-check-lg me-2"></i>AConfirmar Cláusulas Selecionadas
+                        <button type="submit" class="btn btn-active m-2  rounded-2">
+                            <i class="bi bi-check-lg me-2"></i> Confirmar Cláusulas Selecionadas
                         </button>
+
+                        <a href="{{  route('contrato.rascunho', $contrato->id) }}"  class="btn btn-outline-active  rounded-2">
+                            <i class="bi bi-check-lg me-2"></i> Previsualizar Contrato
+                        </a>
                     </div>
                 </form>
             </div>

@@ -22,17 +22,27 @@ class Rubrica extends Model
 
 
 
-    public function colaboradores()
+   public function rubricas()
     {
         return $this->belongsToMany(
-            \App\Models\Colaboradore::class,
+            \App\Models\Rubrica::class,
             'rubrica_colaboradors',
-            'rubrica_id',
-            'colaborador_id'
+            'colaborador_id',
+            'rubrica_id'
         )
-        ->withPivot('id', 'team_id', 'eh_automatica', 'valor_customizado', 'formula_customizada')
+        ->withPivot([
+            'id',
+            'team_id',
+            'colaborador_id',
+            'rubrica_id',
+            'eh_automatica',
+            'valor_customizado',
+            'formula_customizada',
+            'status'
+        ])
         ->withTimestamps();
     }
+
 
 
 

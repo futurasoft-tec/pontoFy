@@ -147,7 +147,7 @@ class Colaboradore extends Model
                 'colaborador_id',         // chave na pivot referente a colaborador
                 'rubrica_id'              // chave na pivot referente a rubrica
             )
-            ->withPivot('id', 'team_id', 'eh_automatica', 'valor_customizado', 'formula_customizada')
+            ->withPivot('id', 'team_id', 'eh_automatica', 'valor_customizado', 'formula_customizada', 'status')
             ->withTimestamps();
         }
 

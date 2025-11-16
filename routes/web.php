@@ -29,6 +29,7 @@ use App\Http\Controllers\{
     TermoController,
     RubricaController,
     FolhasSalarioController,
+    RubricaColaboradorController,
 };
 
 
@@ -135,7 +136,7 @@ Route::middleware(['auth', 'verified'])
         Route::get('colaboradores/list', [ColaboradoreController:: class, 'index'])->name('colaboradores.index');
         Route::get('colaborador/create', [ColaboradoreController::class, 'create'])->name('colaborador.create');
         Route::post('colaborador/store', [ColaboradoreController:: class, 'store'])->name('colaborador.store');
-        Route::get('colaborador/{id}/details', [ColaboradoreController:: class,'show'])->name('colaborador.show');
+        Route::get('colaborador/{id}/historico', [ColaboradoreController:: class,'show'])->name('colaborador.show');
         Route::get('colaborador/{id}/edit', [ColaboradoreController:: class,'edit'])->name('colaborador.edit');
         Route::put('colaborador/{id}/update', [ColaboradoreController:: class,'update'])->name('colaborador.update');
         Route::delete('colaborador/{id}/delete', [ColaboradoreController:: class,'destroy'])->name('colaborador.destroy');
@@ -170,29 +171,31 @@ Route::middleware(['auth', 'verified'])
         Route::get('contratos/list', [ContratoController:: class, 'index'])->name('contratos.index');
         Route::get('contrato/create', [ContratoController::class, 'create'])->name('contrato.create');
         Route::post('contrato/store', [ContratoController:: class, 'store'])->name('contrato.store');
-        Route::get('contrato/contrato-rascunho/{id}', [ContratoController:: class,'show'])->name('contrato.show');
+        Route::get('contrato/contrato/{id}/rascunho', [ContratoController:: class,'rascunho'])->name('contrato.rascunho');
+        Route::get('contrato/contrato/{id}/manager', [ContratoController:: class,'show'])->name('contrato.show');
+        Route::put('contrato/{id}/edit', [ContratoController:: class,'edit'])->name('contrato.edit');
+        Route::put('contrato/{id}/update', [ContratoController:: class,'update'])->name('contrato.update');
+
         Route::get('contrato/{id}/add-clausulas', [ContratoController:: class,'addClausulas'])->name('add.clausulas');
         // Adicionar Clausulas ao Contrato
         Route::post('add-clausula-contrato/store', [ClausulaContratoController:: class, 'store'])->name('add-clausula-contrato.store');
 
         // Editar Clausula do Contrato especifico
-        Route::put('/contratos/{contrato}/clausulas/{clausulaContrato}', [ClausulaContratoController::class, 'update'])
-        ->name('clausula-contrato.update');
+        // Route::put('/contratos/{contrato}/clausulas/{clausulaContrato}', [ClausulaContratoController::class, 'update'])
+        // ->name('clausula-contrato.update');
 
-
-
-        Route::get('contrato/{id}/edit', [ContratoController:: class,'edit'])->name('contrato.edit');
-        Route::put('contrato/{id}/update', [ContratoController:: class,'update'])->name('contrato.update');
-     
         // Remoção  múltipla de Clausulas ao ocntrato especifico
         Route::delete('/contratos/{contrato}/clausulas', [ClausulaContratoController::class, 'destroyMultiple'])
         ->name('contrato.clausulas.destroy.multiple');
 
         // Converter contrato em PDF
         Route::get('/contratos/{id}/pdf', [ContratoController::class, 'gerarPdf'])->name('contratos.pdf');
-       
-
+        //====ACÇÕES AO CONTRATO====
         Route::delete('contrato/{id}/delete', [ContratoController:: class,'destroy'])->name('contrato.destroy');
+        Route::put('contrato/{id}/cancelar', [ContratoController::class, 'cancelar'])->name('contrato.cancelar');
+        Route::put('contrato/{id}/assinar', [ContratoController:: class,'assinar'])->name('contrato.assinar');
+        Route::put('contrato/{id}/rescindir', [ContratoController::class, 'rescindir'])->name('contrato.rescindir');
+
     });
 
 
@@ -209,7 +212,7 @@ Route::middleware(['auth', 'verified'])
     });
 
 
-     // =======DEFINICAO DAS RUBRICAS========
+    // =======DEFINICAO DAS RUBRICAS========
     Route::middleware(['auth', 'can:company_admin_acesso'])->group(function(){
         Route::get('rubricas/list', [RubricaController:: class, 'index'])->name('rubricas.index');
         Route::get('rubrica/create', [RubricaController::class, 'create'])->name('rubrica.create');
@@ -218,6 +221,24 @@ Route::middleware(['auth', 'verified'])
         Route::get('rubrica/{id}/edit', [RubricaController:: class,'edit'])->name('rubrica.edit');
         Route::put('rubrica/{id}/update', [RubricaController:: class,'update'])->name('rubrica.update');
         Route::delete('rubrica/{id}/delete', [RubricaController::class,'destroy'])->name('rubrica.destroy');
+    });
+
+
+    // =======ADD RUBRICA AO COLABORADOR========
+    Route::middleware(['auth', 'can:company_admin_acesso'])->group(function(){
+        Route::get('rubricasColaborador/list', [RubricaColaboradorController:: class, 'index'])->name('rubricasColaborador.index');
+        Route::get('rubricaColaborador/create', [RubricaColaboradorController::class, 'create'])->name('rubricaColaborador.create');
+        Route::post('rubricaColaborador/store', [RubricaColaboradorController:: class, 'store'])->name('rubricaColaborador.store');
+        Route::get('rubricaColaborador/{id}/details', [RubricaColaboradorController:: class,'show'])->name('rubricaColaborador.show');
+        Route::get('rubricaColaborador/{id}/edit', [RubricaColaboradorController:: class,'edit'])->name('rubricaColaborador.edit');
+        Route::put('rubricaColaborador/{id}/update', [RubricaColaboradorController:: class,'update'])->name('rubricaColaborador.update');
+        Route::delete('rubricaColaborador/{id}/delete', [RubricaColaboradorController::class,'destroy'])->name('rubricaColaborador.destroy');
+        // Desativar rubrica do colaborador
+        Route::put('rubrica-colaborador/{id}/desativar', [RubricaColaboradorController::class, 'desativar'])
+            ->name('rubricaColaborador.desativar');
+        // Reativar rubrica do colaborador
+        Route::put('rubrica-colaborador/{id}/reativar', [RubricaColaboradorController::class, 'reativar'])
+            ->name('rubricaColaborador.reativar');
     });
 
 

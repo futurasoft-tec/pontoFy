@@ -39,7 +39,17 @@ return new class extends Migration
             $table->text('observacoes')->nullable();
 
             // Situação do contrato
-            $table->enum('status', ['ativo','inativo','terminado'])->default('ativo');
+            $table->enum('status', ['rascunho', 'ativo', 'terminado', 'rescindido', 'inativo'])->default('rascunho');
+            
+            // Assinatura do contratos
+            $table->string('codigo_assinatura')->nullable();    
+            $table->foreignId('assinado_por')->nullable()->constrained('users')->cascadeOnDelete();
+            $table->date('data_assinatura')->nullable();
+            
+            // Rescisão do Contrato
+            $table->date('data_rescisao')->nullable();
+            $table->text('motivo_rescisao')->nullable();
+            $table->foreignId('rescindido_por')->nullable()->constrained('users')->cascadeOnDelete();
 
             // Auditoria
             $table->foreignId('criado_por')->constrained('users')->cascadeOnDelete();

@@ -107,7 +107,7 @@ class ClausulaContratoController extends Controller
     }
 
     return redirect()
-        ->route('contrato.show', $contrato->id)
+        ->route('contrato.rascunho', $contrato->id)
         ->with('sucesso', count($criados) . ' cláusula(s) adicionada(s) ao contrato com sucesso.');
 }
 

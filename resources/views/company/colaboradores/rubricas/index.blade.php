@@ -2,18 +2,18 @@
     <!--Lista dos dependentes-->
     <div class="mb-2 d-flex align-items-center justify-content-between">
         <h4 class="h4 text-active">
-            Contratos
+            Rubricas
         </h4>
         <div class="ms-md-autoA py-2A py-md-0A mt-0">
             <a href="{{ route('colaborador.create') }}" class="btn-active btn-round" data-bs-toggle="modal"
-                data-bs-target="#createContratoModal">
+                data-bs-target="#addRubricaModal">
                 <i class="fas fa-plus-square"></i>
-                <span class="d-none d-sm-inline-block ms-2">Novo-Contrato</span>
+                <span class="d-none d-sm-inline-block ms-2">Nova Rubrica</span>
             </a>
         </div>
     </div>
 
-    @include('company.colaboradores.contratos.create-contratos')
+    @include('company.colaboradores.rubricas.add-rubrica')
 
     <div class="card rounded-0">
         <div class="card-body p-1">
@@ -24,14 +24,7 @@
                             <div class="mb-4 ">
                                 <i class="fas fa-exclamation" style="font-size: 80px;"></i>
                             </div>
-                            <h5 class="fw-normal mb-3">Nenhum Contrato Adicionando</h5>
-                        </div>
-                        <div class="text-center">
-                            <a href="{{ route('categoria.create') }}" class="btn btn-active rounded-pill"
-                                data-bs-toggle="modal" data-bs-target="#createContratoModal">
-                                <i class="ri-user-add-line me-2"></i>Adicionar Novo Contrato
-                                para {{ $colaborador->nome_completo }}
-                            </a>
+                            <h5 class="fw-normal mb-3">Nenhuma rubrica foi Adicionando</h5>
                         </div>
                     </div>
                 @else
@@ -43,6 +36,7 @@
                                     <th class="py-1"><b>Nome</b></th>
                                     <th class="py-1"><b>Tipo</b></th>
                                     <th class="py-1 text-center"><b>Base Cálculo</b></th>
+                                    <th class="py-1 text-center"><b>Status</b></th>
                                     <th class="py-1 text-center"><b>Valor</b></th>
                                     <th class="py-1 text-center"><b>Tributável</b></th>
                                     <th class="py-1 text-center"><b>Automática?</b></th>
@@ -65,8 +59,14 @@
                                             {{ $rubrica->tipo ?? 'NA' }}
                                         </td>
 
+
+
                                         <td class="py-1 small text-center" style="text-transform:capitalize">
                                             {{ $rubrica->base_calculo ?? 'NA' }}
+                                        </td>
+
+                                        <td class="py-1 small text-center" style="text-transform:capitalize">
+                                            {{ $rubrica->pivot->status }}
                                         </td>
 
                                         <td class="py-1 small text-center">
@@ -87,28 +87,42 @@
                                         </td>
 
                                         <td class="py-1 small text-end">
-                                            <a href="{{ route('departamento.edit', $rubrica->id) }}"
+
+                                            <!-- Editar -->
+                                            <a href="{{ route('rubricaColaborador.edit', $rubrica->pivot->id) }}"
                                                 class="text-active me-2" data-bs-toggle="modal"
-                                                data-bs-target="#editContratoModal{{ $rubrica->id }}">
+                                                data-bs-target="#editRubricaModal{{ $rubrica->pivot->id }}">
                                                 <i class="far fa-edit"></i>
                                             </a>
-                                            <a href="" class="text-danger me-2" data-bs-toggle="modal"
-                                                data-bs-target="#deleteDocumentoModal{{ $rubrica->id }}">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
 
-                                            <a href="{{ route('contrato.show', $rubrica->id) }}"
-                                                class="text-active me-2">
+                                            <!-- Visualizar -->
+                                            <a href="{{ route('rubricaColaborador.show', $rubrica->pivot->id) }}"
+                                                class="text-active me-2" data-bs-toggle="modal"
+                                                data-bs-target="#detailRubricaModal{{ $rubrica->pivot->id }}">
                                                 <i class="far fa-eye"></i>
                                             </a>
+                                            @if ($rubrica->pivot->status === 'ativo')
+                                                <!-- Desativar -->
+                                                <a href="{{ route('rubricaColaborador.desativar', $rubrica->pivot->id) }}"
+                                                    class="text-warning me-2" data-bs-toggle="modal"
+                                                    data-bs-target="#desativarRubricaModal{{ $rubrica->pivot->id }}">
+                                                    <i class="fas fa-ban"></i>
+                                                </a>
+                                            @elseif($rubrica->pivot->status === 'inativo')
+                                                <!-- Reativar -->
+                                                <a href="{{ route('rubricaColaborador.reativar', $rubrica->pivot->id) }}"
+                                                    class="text-success me-2" data-bs-toggle="modal"
+                                                    data-bs-target="#reativarRubricaModal{{ $rubrica->pivot->id }}">
+                                                    <i class="fas fa-power-off"></i>
+                                                </a>
+                                            @endif
                                         </td>
                                     </tr>
-
-
-
                                     {{-- ===========MODAIS=============== --}}
-                                    {{-- @include('company.colaboradores.contratos.edit-contato') --}}
-                                    {{-- @include('company.documentos.delete-confirme') --}}
+                                    @include('company.colaboradores.rubricas.confirm-desativar')
+                                    @include('company.colaboradores.rubricas.confirm-reativar')
+                                    @include('company.colaboradores.rubricas.edit-rubrica')
+                                    @include('company.colaboradores.rubricas.details-rubrica')
                                     {{-- ===============MODAIS=========== --}}
                                 @endforeach
                             </tbody>
@@ -132,3 +146,4 @@
         </div>
     </div>
 </section>
+@include('company.rubricas.create')

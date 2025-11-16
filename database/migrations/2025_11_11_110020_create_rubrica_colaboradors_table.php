@@ -20,6 +20,7 @@ return new class extends Migration
             $table->boolean('eh_automatica')->default(true);
             $table->decimal('valor_customizado', 15, 2)->nullable();
             $table->text('formula_customizada')->nullable();
+            $table->enum('status', ['ativo', 'inativo'])->default('ativo');
 
             $table->timestamps();
 
