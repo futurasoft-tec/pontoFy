@@ -17,6 +17,6 @@ class Documento extends Model
     // Relacionamento
     //Relacao com colaborador
     public function colaborador(){
-        return $this->belongsTo(Colaborador::Class, 'colaborador_id');
+        return $this->belongsTo(Colaboradore::Class, 'colaborador_id');
     }
 }

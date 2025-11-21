@@ -28,8 +28,12 @@ use App\Http\Controllers\{
     PoliticaPrivacidadeController,
     TermoController,
     RubricaController,
+    HorarioController,
+    EscalaController,
+    AssiduidadeController,
     FolhasSalarioController,
     RubricaColaboradorController,
+    
 };
 
 
@@ -213,7 +217,7 @@ Route::middleware(['auth', 'verified'])
 
 
     // =======DEFINICAO DAS RUBRICAS========
-    Route::middleware(['auth', 'can:company_admin_acesso'])->group(function(){
+    Route::middleware(['auth', 'can:company_beneficios'])->group(function(){
         Route::get('rubricas/list', [RubricaController:: class, 'index'])->name('rubricas.index');
         Route::get('rubrica/create', [RubricaController::class, 'create'])->name('rubrica.create');
         Route::post('rubrica/store', [RubricaController:: class, 'store'])->name('rubrica.store');
@@ -225,7 +229,7 @@ Route::middleware(['auth', 'verified'])
 
 
     // =======ADD RUBRICA AO COLABORADOR========
-    Route::middleware(['auth', 'can:company_admin_acesso'])->group(function(){
+    Route::middleware(['auth', 'can:company_beneficios'])->group(function(){
         Route::get('rubricasColaborador/list', [RubricaColaboradorController:: class, 'index'])->name('rubricasColaborador.index');
         Route::get('rubricaColaborador/create', [RubricaColaboradorController::class, 'create'])->name('rubricaColaborador.create');
         Route::post('rubricaColaborador/store', [RubricaColaboradorController:: class, 'store'])->name('rubricaColaborador.store');
@@ -244,7 +248,7 @@ Route::middleware(['auth', 'verified'])
 
 
     // =========== PERÍODOS DE PROCESSAMENTOS ===========
-    Route::middleware(['auth', 'can:company_admin_acesso'])->group(function(){
+    Route::middleware(['auth', 'can:company_processarFolha'])->group(function(){
         Route::get('periodos/list', [PeriodosProcessamentoController:: class, 'index'])->name('periodos.index');
         Route::get('periodo/create', [PeriodosProcessamentoController::class, 'create'])->name('periodo.create');
         Route::post('periodo/store', [PeriodosProcessamentoController:: class, 'store'])->name('periodo.store');
@@ -254,9 +258,53 @@ Route::middleware(['auth', 'verified'])
         Route::delete('periodo/{id}/delete', [PeriodosProcessamentoController::class,'destroy'])->name('periodo.destroy');
     });
 
+    // =======================================
+    #             MODULO DE ASSIDUIDADE            
+    //========================================
+    // =========== Horarios ===========
+    Route::middleware(['auth', 'can:company_gestaoAusencias'])->group(function(){
+        Route::get('horarios/list', [HorarioController:: class, 'index'])->name('horarios.index');
+        Route::get('horario/create', [HorarioController::class, 'create'])->name('horario.create');
+        Route::post('horario/store', [HorarioController:: class, 'store'])->name('horario.store');
+        Route::get('horario/{id}/details', [HorarioController:: class,'show'])->name('horario.show');
+        Route::get('horario/{id}/edit', [HorarioController:: class,'edit'])->name('horario.edit');
+        Route::put('horario/{id}/update', [HorarioController:: class,'update'])->name('horario.update');
+        Route::delete('horario/{id}/delete', [HorarioController::class,'destroy'])->name('horario.destroy');
+    });
+
+
+    // =========== Escalas ===========
+    Route::middleware(['auth', 'can:company_gestaoAusencias'])->group(function(){
+        Route::get('escalas/list', [EscalaController:: class, 'index'])->name('escalas.index');
+        Route::get('escala/create', [EscalaController::class, 'create'])->name('escala.create');
+        Route::post('escala/store', [EscalaController:: class, 'store'])->name('escala.store');
+        Route::get('escala/{id}/details', [EscalaController:: class,'show'])->name('escala.show');
+        Route::get('escala/{id}/edit', [EscalaController:: class,'edit'])->name('escala.edit');
+        Route::put('escala/{id}/update', [EscalaController:: class,'update'])->name('escala.update');
+        Route::delete('escala/{id}/delete', [EscalaController::class,'destroy'])->name('escala.destroy');
+    });
+
+    // =========== Assiduidades ===========
+    Route::middleware(['auth', 'can:company_gestaoAusencias'])->group(function(){
+        Route::get('assiduidade/pontos', [AssiduidadeController:: class, 'index'])->name('assiduidades.index');
+        Route::get('assiduidade/create', [AssiduidadeController::class, 'create'])->name('assiduidade.create');
+        Route::post('assiduidade/store', [AssiduidadeController:: class, 'store'])->name('assiduidade.store');
+        Route::get('assiduidade/{id}/details', [AssiduidadeController:: class,'show'])->name('assiduidade.show');
+        Route::get('assiduidade/{id}/edit', [AssiduidadeController:: class,'edit'])->name('assiduidade.edit');
+        Route::put('assiduidade/{id}/update', [AssiduidadeController:: class,'update'])->name('assiduidade.update');
+        Route::delete('assiduidade/{id}/delete', [AssiduidadeController::class,'destroy'])->name('assiduidade.destroy');
+    });
+
+
+
+
+
+
+
+    
 
     // =========== FOLHAS DE SALARIOS ===========
-    Route::middleware(['auth', 'can:company_admin_acesso'])->group(function(){
+    Route::middleware(['auth', 'can:company_processarFolha'])->group(function(){
         Route::get('folhas-de-salarios/list', [FolhasSalarioController:: class, 'index'])->name('salarios.index');
         Route::get('folha-de-salario/create', [FolhasSalarioController::class, 'create'])->name('salario.create');
         Route::post('folha-de-salario/store', [FolhasSalarioController:: class, 'store'])->name('salario.store');

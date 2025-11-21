@@ -21,7 +21,17 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         // Registros Para empresas em massa
+        
+
+
+
+       
         $this->call([
+            // Registros do system
+            UserDemoSeeder::class,
+            RolePermissionSeeder::class,
+            ClausulaTableSeeder::class,
+            // Outros seeders globais
             DepartamentoSeeder::class,
             NivelHierarquicoSeeder::class,
             CargoSeeder::class,
@@ -29,13 +39,6 @@ class DatabaseSeeder extends Seeder
             ColaboradorSeeder::class,
         ]);
 
-
-
-        // Registros do system
-        $this->call([
-            //  UserDemoSeeder::class,
-            // RolePermissionSeeder::class,
-            // ClausulaTableSeeder::class,
-        ]);
+       
     }
 }

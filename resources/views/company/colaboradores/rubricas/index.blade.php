@@ -5,7 +5,8 @@
             Rubricas
         </h4>
         <div class="ms-md-autoA py-2A py-md-0A mt-0">
-            <a href="{{ route('colaborador.create') }}" class="btn-active btn-round" data-bs-toggle="modal"
+            <a href="{{ route('colaborador.create') }}" class="btn-active btn-round"
+                 data-bs-toggle="modal"
                 data-bs-target="#addRubricaModal">
                 <i class="fas fa-plus-square"></i>
                 <span class="d-none d-sm-inline-block ms-2">Nova Rubrica</span>

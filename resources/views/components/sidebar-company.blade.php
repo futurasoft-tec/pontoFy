@@ -110,7 +110,7 @@
                     </a>
                     <div class="collapse" id="assiduidade">
                         <ul class="nav nav-collapse">
-                            <li><a href="/assiduidade/ponto"><span class="sub-item">Registo de Ponto</span></a></li>
+                            <li><a href="{{ route('assiduidades.index') }}"><span class="sub-item">Registo de Ponto</span></a></li>
                             <li><a href="/assiduidade/faltas"><span class="sub-item">Faltas e Justificações</span></a>
                             </li>
                             <li><a href="/assiduidade/horarios"><span class="sub-item">Horários de Trabalho</span></a>
